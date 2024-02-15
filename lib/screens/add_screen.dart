@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline/resources/firebase_methods.dart';
 import 'package:timeline/widgets/input_box.dart';
@@ -15,7 +14,7 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseMethods firebase = FirebaseMethods.instance;
   // ignore: prefer_final_fields
   TextEditingController _name = TextEditingController();
   String name = "";
@@ -57,8 +56,7 @@ class _AddScreenState extends State<AddScreen> {
   }
 
   void makeEvent() async {
-    String rez = await FirebaseMethods().createNewEvent(
-      userUid: _auth.currentUser!.uid,
+    String rez = await firebase.createNewEvent(
       dateTime: _dateTime,
       timeOfDay: _timeOfDay,
       name: _name.text,

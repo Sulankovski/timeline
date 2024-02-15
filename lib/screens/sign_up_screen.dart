@@ -20,8 +20,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   // ignore: prefer_final_fields
   TextEditingController _username = TextEditingController();
 
+  final FirebaseMethods firebase = FirebaseMethods.instance;
+
   void signUp() async {
-    String result = await FirebaseMethods().createUser(
+    String result = await firebase.createUser(
       email: _mail.text,
       password: _pass.text,
       username: _username.text,

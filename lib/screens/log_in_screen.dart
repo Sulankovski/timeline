@@ -15,12 +15,14 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   // ignore: prefer_final_fields
   TextEditingController _mail = TextEditingController();
+
   // ignore: prefer_final_fields
   TextEditingController _pass = TextEditingController();
+  final FirebaseMethods firebase = FirebaseMethods.instance;
 
   void logIn() async {
-    String result = await FirebaseMethods()
-        .logInUser(email: _mail.text, password: _pass.text);
+    String result =
+        await firebase.logInUser(email: _mail.text, password: _pass.text);
     if (result == "User successfuly logged in") {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(

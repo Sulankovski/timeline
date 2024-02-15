@@ -8,12 +8,21 @@ class FirebaseMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
+  // Private constructor for Singleton design pattern
+  FirebaseMethods._privateConstructor();
+
+  static final FirebaseMethods _instance =
+      FirebaseMethods._privateConstructor();
+
+  // Getter to access the instance
+  static FirebaseMethods get instance => _instance;
+
   Future<String> createUser({
     required String email,
     required String password,
     required String username,
   }) async {
-    String result = "Error while sign up occured";
+    String result = "Error while sign up occurred";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
         //user sign up
@@ -36,7 +45,7 @@ class FirebaseMethods {
     required String email,
     required String password,
   }) async {
-    String result = "Error while log in occured";
+    String result = "Something went wrong";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
         await _auth.signInWithEmailAndPassword(
@@ -55,7 +64,6 @@ class FirebaseMethods {
   }
 
   Future<String> createNewEvent({
-    required String userUid,
     required DateTime dateTime,
     required TimeOfDay timeOfDay,
     required String name,
@@ -64,13 +72,13 @@ class FirebaseMethods {
     String result = "Error while making event";
     try {
       String eventID = const Uuid().v1();
-      if (userUid.isNotEmpty &&
+      if (_auth.currentUser!.uid.isNotEmpty &&
           dateTime != DateTime(0) &&
           name.isNotEmpty &&
           group.isNotEmpty) {
         _fireStore
             .collection("users")
-            .doc(userUid)
+            .doc(_auth.currentUser!.uid)
             .collection("events")
             .doc(eventID)
             .set({

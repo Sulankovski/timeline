@@ -24,7 +24,7 @@ class _AddScreenState extends State<AddScreen> {
   TimeOfDay _timeOfDay = TimeOfDay.now();
   String _time = "Choose time";
   // ignore: prefer_final_fields
-  String _local = "Choose location";
+  // String _local = "Choose location";
   String _selectedOption = "group";
   String _group = "";
 

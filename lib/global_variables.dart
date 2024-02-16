@@ -11,3 +11,4 @@ List<Widget> homeScreenItems = [
 
 Color orange = const Color.fromARGB(255, 203, 123, 3);
 Color purple = const Color.fromARGB(255, 54, 23, 146);
+Color deepBlue = Color.fromARGB(255, 31, 64, 131);

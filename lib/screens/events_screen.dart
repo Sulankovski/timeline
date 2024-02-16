@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:timeline/global_variables.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -13,15 +14,14 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
             // Color.fromARGB(255, 27, 10, 81),
-            Color.fromARGB(255, 54, 23, 146),
-            Color.fromARGB(255, 203, 123, 3),
-            Color.fromARGB(255, 54, 23, 146),
+            deepBlue,
+            Colors.lightBlueAccent,
           ],
         ),
       ),

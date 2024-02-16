@@ -5,6 +5,8 @@ import 'package:timeline/screens/mobile_screen.dart';
 import 'package:timeline/widgets/button.dart';
 import 'package:timeline/widgets/input_box.dart';
 
+import '../global_variables.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -48,15 +50,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Center(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                // Color.fromARGB(255, 27, 10, 81),
-                Color.fromARGB(255, 54, 23, 146),
-                Color.fromARGB(255, 203, 123, 3),
-                Color.fromARGB(255, 54, 23, 146),
+                deepBlue,
+                Colors.lightBlueAccent,
               ],
             ),
           ),

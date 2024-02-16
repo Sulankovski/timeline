@@ -40,12 +40,12 @@ class _MobileScreenState extends State<MobileScreen> {
       ),
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: 1, // This will make the middle item the default
-        backgroundColor: purple,
-        items: [
+        backgroundColor: Colors.lightBlueAccent,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.map,
-              color: orange,
+              color: Colors.white,
             ),
             label: '',
             backgroundColor: Colors.transparent,
@@ -53,7 +53,7 @@ class _MobileScreenState extends State<MobileScreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: orange,
+              color: Colors.white,
             ),
             label: '',
             backgroundColor: Colors.transparent,
@@ -61,7 +61,7 @@ class _MobileScreenState extends State<MobileScreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.event,
-              color: orange,
+              color: Colors.white,
             ),
             label: '',
             backgroundColor: Colors.transparent,

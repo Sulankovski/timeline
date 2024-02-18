@@ -92,18 +92,63 @@ class _AddScreenState extends State<AddScreen> {
         ),
         borderRadius: BorderRadius.circular(30),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InputBox(
-            controller: _name,
-            hitText: "Input name for event",
-          ),
-          Row(
+      child: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              InputBox(
+                controller: _name,
+                hitText: "Input name for event",
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextButton(
+                        onPressed: picDate,
+                        child: Text(
+                          _date,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextButton(
+                        onPressed: picTime,
+                        child: Text(
+                          _time,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
                 child: Container(
                   height: 40,
                   decoration: BoxDecoration(
@@ -112,9 +157,27 @@ class _AddScreenState extends State<AddScreen> {
                     border: Border.all(color: Colors.white),
                   ),
                   child: TextButton(
-                    onPressed: picDate,
+                    onPressed: () async {
+                      var geoPoints = await showSimplePickerLocation(
+                        context: context,
+                        isDismissible: true,
+                        title: "Pick",
+                        initPosition: GeoPoint(
+                          latitude: _startPos.latitude,
+                          longitude: _startPos.longitude,
+                        ),
+                      );
+                      if (geoPoints != null) {
+                        setState(() {
+                          _local =
+                              "${geoPoints.latitude} ${geoPoints.longitude}";
+                          locationTExt = "Location chosen";
+                        });
+                        print(_local);
+                      }
+                    },
                     child: Text(
-                      _date,
+                      locationTExt,
                       style: const TextStyle(
                         color: Colors.white,
                       ),
@@ -123,7 +186,75 @@ class _AddScreenState extends State<AddScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 15),
+                  width: 77,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    icon: Container(),
+                    alignment: Alignment.center,
+                    value: _selectedOption,
+                    dropdownColor: Colors.white,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedOption = newValue!;
+                        _group = newValue;
+                      });
+                    },
+                    selectedItemBuilder: (BuildContext context) {
+                      return ["public", "private", "group"]
+                          .map<Widget>((String item) {
+                        return Center(
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                      }).toList();
+                    },
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    items: ["public", "private", "group"]
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Center(
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
                 child: Container(
                   height: 40,
                   decoration: BoxDecoration(
@@ -132,10 +263,10 @@ class _AddScreenState extends State<AddScreen> {
                     border: Border.all(color: Colors.white),
                   ),
                   child: TextButton(
-                    onPressed: picTime,
-                    child: Text(
-                      _time,
-                      style: const TextStyle(
+                    onPressed: () => makeEvent(),
+                    child: const Text(
+                      "Submit",
+                      style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
@@ -144,132 +275,7 @@ class _AddScreenState extends State<AddScreen> {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.white),
-              ),
-              child: TextButton(
-                onPressed: () async {
-                  var geoPoints = await showSimplePickerLocation(
-                    context: context,
-                    isDismissible: true,
-                    title: "Pick",
-                    initPosition: GeoPoint(
-                      latitude: _startPos.latitude,
-                      longitude: _startPos.longitude,
-                    ),
-                  );
-                  if(geoPoints!=null){
-                    setState(() {
-                      _local="${geoPoints.latitude} ${geoPoints.longitude}";
-                      locationTExt = "Location chosen";
-                    });
-                    print(_local);
-                  }
-                },
-                child: Text(
-                  locationTExt,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-            child: Container(
-              padding: const EdgeInsets.only(left: 15),
-              width: 77,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Colors.white,
-                ),
-              ),
-              child: DropdownButtonFormField<String>(
-                icon: Container(),
-                alignment: Alignment.center,
-                value: _selectedOption,
-                dropdownColor: Colors.white,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedOption = newValue!;
-                    _group = newValue;
-                  });
-                },
-                selectedItemBuilder: (BuildContext context) {
-                  return ["public", "private", "group"]
-                      .map<Widget>((String item) {
-                    return Center(
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    );
-                  }).toList();
-                },
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-                decoration: const InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                ),
-                items: ["public", "private", "group"]
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Center(
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.white),
-              ),
-              child: TextButton(
-                onPressed: () => makeEvent(),
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

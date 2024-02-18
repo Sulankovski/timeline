@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             add == false
                 ? Expanded(
-                  child: ListView.builder(
+                    child: ListView.builder(
                       itemCount: _getEventsForDay(selectedDate).length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
@@ -141,8 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 20.0,
                                     width: 20.0,
                                     decoration: BoxDecoration(
-                                      color:
-                                          Colors.white,
+                                      color: Colors.white,
                                       // const Color.fromARGB(255, 203, 123, 3),
                                       borderRadius: BorderRadius.circular(20),
                                       border: Border.all(
@@ -155,7 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Expanded(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -164,9 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         _getEventsForDay(selectedDate)[index]
                                             .eventName,
                                         style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         _getEventsForDay(selectedDate)[index]
@@ -198,13 +197,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                     ),
-                )
-                : AddScreen(
-                    onSubmit: () {
-                      setState(() {
-                        add = false;
-                      });
-                    },
+                  )
+                : Expanded(
+                    child: AddScreen(
+                      onSubmit: () {
+                        setState(() {
+                          add = false;
+                        });
+                      },
+                    ),
                   ),
           ],
         ),

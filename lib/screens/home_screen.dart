@@ -64,6 +64,37 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchEvents();
   }
 
+  void _showEventInfoPopup(Event event) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(event.eventName, style: const TextStyle(fontWeight: FontWeight.bold)),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Created by: "),
+                Text("${event.time} - ${event.date.split(" ")[0]}"),
+                Text("Participants:")
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   FirebaseMethods firebase = FirebaseMethods.instance;
 
   @override
@@ -121,90 +152,98 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             add == false
                 ? Expanded(
-                  child: ListView.builder(
+                    child: ListView.builder(
                       itemCount: _getEventsForDay(selectedDate).length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: 150,
-                                    width: 1.0,
-                                    color: Colors.white,
-                                  ),
-                                  Container(
-                                    height: 20.0,
-                                    width: 20.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          Colors.white,
-                                      // const Color.fromARGB(255, 203, 123, 3),
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
+                        return GestureDetector(
+                          onTap: () => _showEventInfoPopup(
+                              _getEventsForDay(selectedDate)[index]),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20.0),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      height: 150,
+                                      width: 1.0,
+                                      color: Colors.white,
+                                    ),
+                                    Container(
+                                      height: 20.0,
+                                      width: 20.0,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        // const Color.fromARGB(255, 203, 123, 3),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          _getEventsForDay(selectedDate)[index]
+                                              .eventName,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          _getEventsForDay(selectedDate)[index]
+                                              .date
+                                              .split(" ")[0],
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                      _getEventsForDay(selectedDate)[index]
+                                          .time,
+                                      style: const TextStyle(
                                         color: Colors.white,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        _getEventsForDay(selectedDate)[index]
-                                            .eventName,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                    Text(
+                                      _getEventsForDay(selectedDate)[index]
+                                          .type,
+                                      style: const TextStyle(
+                                        color: Colors.white,
                                       ),
-                                      Text(
-                                        _getEventsForDay(selectedDate)[index]
-                                            .date
-                                            .split(" ")[0],
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    _getEventsForDay(selectedDate)[index].time,
-                                    style: const TextStyle(
-                                      color: Colors.white,
                                     ),
-                                  ),
-                                  Text(
-                                    _getEventsForDay(selectedDate)[index].type,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     ),
-                )
-                : AddScreen(
-                    onSubmit: () {
-                      setState(() {
-                        add = false;
-                      });
-                    },
+                  )
+                : Expanded(
+                    child: AddScreen(
+                      onSubmit: () {
+                        setState(() {
+                          add = false;
+                        });
+                      },
+                    ),
                   ),
           ],
         ),

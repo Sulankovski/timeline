@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:timeline/resources/firebase_methods.dart';
 import 'package:timeline/widgets/input_box.dart';
 
@@ -24,7 +26,8 @@ class _AddScreenState extends State<AddScreen> {
   TimeOfDay _timeOfDay = TimeOfDay.now();
   String _time = "Choose time";
   // ignore: prefer_final_fields
-  // String _local = "Choose location";
+  String _local = "";
+  String locationTExt = "Choose location";
   String _selectedOption = "group";
   String _group = "";
 
@@ -61,6 +64,7 @@ class _AddScreenState extends State<AddScreen> {
       timeOfDay: _timeOfDay,
       name: _name.text,
       group: _group,
+      location: _local,
     );
     setState(() {
       widget.onSubmit();
@@ -68,6 +72,11 @@ class _AddScreenState extends State<AddScreen> {
     // ignore: avoid_print
     print(rez);
   }
+
+  static const LatLng _startPos = LatLng(
+    42.01337147247476,
+    21.45954110749342,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -135,26 +144,43 @@ class _AddScreenState extends State<AddScreen> {
               ),
             ],
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-          //   child: Container(
-          //     height: 40,
-          //     decoration: BoxDecoration(
-          //       color: Colors.transparent,
-          //       borderRadius: BorderRadius.circular(15),
-          //       border: Border.all(color: Colors.white),
-          //     ),
-          //     child: TextButton(
-          //       onPressed: picTime,
-          //       child: Text(
-          //         _local,
-          //         style: const TextStyle(
-          //           color: Colors.white,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.white),
+              ),
+              child: TextButton(
+                onPressed: () async {
+                  var geoPoints = await showSimplePickerLocation(
+                    context: context,
+                    isDismissible: true,
+                    title: "Pick",
+                    initPosition: GeoPoint(
+                      latitude: _startPos.latitude,
+                      longitude: _startPos.longitude,
+                    ),
+                  );
+                  if(geoPoints!=null){
+                    setState(() {
+                      _local="${geoPoints.latitude} ${geoPoints.longitude}";
+                      locationTExt = "Location chosen";
+                    });
+                    print(_local);
+                  }
+                },
+                child: Text(
+                  locationTExt,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
             child: Container(

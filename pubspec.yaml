@@ -35,7 +35,10 @@ dependencies:
   firebase_storage: ^11.6.5
   flutter:
     sdk: flutter
+  flutter_osm_plugin: ^0.70.4
   flutter_timeline_calendar: ^1.0.9
+  fluttertoast: ^8.2.4
+  google_maps_flutter: ^2.5.3
   uuid: ^4.3.3
 
 dev_dependencies:

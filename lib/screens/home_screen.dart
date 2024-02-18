@@ -120,83 +120,85 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             add == false
-                ? ListView.builder(
-                    itemCount: _getEventsForDay(selectedDate).length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  height: 150,
-                                  width: 1.0,
-                                  color: Colors.white,
-                                ),
-                                Container(
-                                  height: 20.0,
-                                  width: 20.0,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        Colors.white,
-                                    // const Color.fromARGB(255, 203, 123, 3),
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
+                ? Expanded(
+                  child: ListView.builder(
+                      itemCount: _getEventsForDay(selectedDate).length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    width: 1.0,
+                                    color: Colors.white,
+                                  ),
+                                  Container(
+                                    height: 20.0,
+                                    width: 20.0,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          Colors.white,
+                                      // const Color.fromARGB(255, 203, 123, 3),
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        _getEventsForDay(selectedDate)[index]
+                                            .eventName,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        _getEventsForDay(selectedDate)[index]
+                                            .date
+                                            .split(" ")[0],
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Text(
+                                    _getEventsForDay(selectedDate)[index].time,
+                                    style: const TextStyle(
                                       color: Colors.white,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      _getEventsForDay(selectedDate)[index]
-                                          .eventName,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold
-                                      ),
+                                  Text(
+                                    _getEventsForDay(selectedDate)[index].type,
+                                    style: const TextStyle(
+                                      color: Colors.white,
                                     ),
-                                    Text(
-                                      _getEventsForDay(selectedDate)[index]
-                                          .date
-                                          .split(" ")[0],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  _getEventsForDay(selectedDate)[index].time,
-                                  style: const TextStyle(
-                                    color: Colors.white,
                                   ),
-                                ),
-                                Text(
-                                  _getEventsForDay(selectedDate)[index].type,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                  )
+                          ],
+                        );
+                      },
+                    ),
+                )
                 : AddScreen(
                     onSubmit: () {
                       setState(() {

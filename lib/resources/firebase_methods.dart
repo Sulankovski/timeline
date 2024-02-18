@@ -68,6 +68,7 @@ class FirebaseMethods {
     required TimeOfDay timeOfDay,
     required String name,
     required String group,
+    required String location,
   }) async {
     String result = "Error while making event";
     try {
@@ -88,6 +89,7 @@ class FirebaseMethods {
               timeOfDay.toString().indexOf("(") + 1,
               timeOfDay.toString().indexOf(")")),
           "group": group,
+          "location": location,
         });
         if (group == "public") {
           _fireStore.collection("publicEvents").doc(eventID).set({
@@ -97,6 +99,7 @@ class FirebaseMethods {
                 timeOfDay.toString().indexOf("(") + 1,
                 timeOfDay.toString().indexOf(")")),
             "group": group,
+            "location": location,
           });
         }
         result = "Event successfully created";

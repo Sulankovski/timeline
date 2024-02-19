@@ -6,6 +6,7 @@ import 'package:timeline/global_variables.dart';
 import 'package:timeline/resources/firebase_methods.dart';
 import 'package:timeline/screens/add_screen.dart';
 import 'package:timeline/widgets/event.dart';
+import 'package:timeline/widgets/event_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,21 +34,29 @@ class _HomeScreenState extends State<HomeScreen> {
       if (_events[eventDate] == null) {
         setState(() {
           _events[eventDate] = [];
-          _events[eventDate]!.add(Event(
-            type: doc["group"],
-            time: doc["time"],
-            eventName: doc["event"],
-            date: doc["date"],
-          ));
+          _events[eventDate]!.add(
+            Event(
+              type: doc["group"],
+              time: doc["time"],
+              eventName: doc["event"],
+              date: doc["date"],
+              host: doc["creator"],
+              participants: doc["participants"],
+            ),
+          );
         });
       } else {
         setState(() {
-          _events[eventDate]!.add(Event(
-            type: doc["group"],
-            time: doc["time"],
-            eventName: doc["event"],
-            date: doc["date"],
-          ));
+          _events[eventDate]!.add(
+            Event(
+              type: doc["group"],
+              time: doc["time"],
+              eventName: doc["event"],
+              date: doc["date"],
+              host: doc["creator"],
+              participants: doc["participants"],
+            ),
+          );
         });
       }
     }
@@ -62,37 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     fetchEvents();
-  }
-
-  void _showEventInfoPopup(Event event) {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(event.eventName, style: const TextStyle(fontWeight: FontWeight.bold)),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Created by: "),
-                Text("${event.time} - ${event.date.split(" ")[0]}"),
-                Text("Participants:")
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   FirebaseMethods firebase = FirebaseMethods.instance;
@@ -157,8 +135,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () => _showEventInfoPopup(
-                              _getEventsForDay(selectedDate)[index]),
+                          onTap: () => EventInfo().showEventInfoPopup(
+                            context,
+                            _getEventsForDay(selectedDate)[index],
+                            _getEventsForDay(selectedDate)[index].host,
+                            _getEventsForDay(selectedDate)[index].participants,
+                          ),
                           child: Row(
                             children: [
                               Padding(
@@ -167,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   alignment: Alignment.center,
                                   children: [
                                     Container(
-                                      height: 150,
+                                      height: 80,
                                       width: 1.0,
                                       color: Colors.white,
                                     ),
@@ -175,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 20.0,
                                       width: 20.0,
                                       decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: deepBlue,
                                         // const Color.fromARGB(255, 203, 123, 3),
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
@@ -254,10 +236,17 @@ class _HomeScreenState extends State<HomeScreen> {
             add == false ? add = true : add = false;
           });
         },
-        tooltip: "ADD",
-        backgroundColor: Colors.white,
+        backgroundColor: deepBlue,
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: Colors.white,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(17),
+        ),
         child: const Icon(
           Icons.add,
+          color: Colors.white,
         ),
       ),
     );

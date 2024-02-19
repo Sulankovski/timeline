@@ -71,6 +71,8 @@ class FirebaseMethods {
     required String location,
   }) async {
     String result = "Error while making event";
+    DocumentSnapshot user =
+        await _fireStore.collection("users").doc(_auth.currentUser!.uid).get();
     try {
       String eventID = const Uuid().v1();
       if (_auth.currentUser!.uid.isNotEmpty &&
@@ -83,6 +85,7 @@ class FirebaseMethods {
             .collection("events")
             .doc(eventID)
             .set({
+          "id": eventID,
           "event": name,
           "date": dateTime.toString(),
           "time": timeOfDay.toString().substring(
@@ -90,9 +93,12 @@ class FirebaseMethods {
               timeOfDay.toString().indexOf(")")),
           "group": group,
           "location": location,
+          "participants": [],
+          "creator": user["username"],
         });
         if (group == "public") {
           _fireStore.collection("publicEvents").doc(eventID).set({
+            "id": eventID,
             "event": name,
             "date": dateTime.toString(),
             "time": timeOfDay.toString().substring(
@@ -100,9 +106,54 @@ class FirebaseMethods {
                 timeOfDay.toString().indexOf(")")),
             "group": group,
             "location": location,
+            "participants": [],
+            "creator": user["username"],
           });
         }
         result = "Event successfully created";
+      }
+    } catch (error) {
+      result = error.toString();
+    }
+    return result;
+  }
+
+  Future<String> likeEvent({
+    required String eventId,
+    required String useruid,
+  }) async {
+    String result = "Error while liking event";
+    try {
+      if (eventId.isNotEmpty && useruid.isNotEmpty) {
+        DocumentSnapshot snap =
+            await _fireStore.collection("publicEvents").doc(eventId).get();
+        if (snap["participants"].contains(useruid)) {
+          _fireStore.collection("publicEvents").doc(eventId).update({
+            "participants": FieldValue.arrayRemove([useruid]),
+          });
+          _fireStore
+              .collection("users")
+              .doc(useruid)
+              .collection("events")
+              .doc(eventId)
+              .update({
+            "participants": FieldValue.arrayRemove([useruid]),
+          });
+          result = "Event successfully disliked";
+        } else {
+          _fireStore.collection("publicEvents").doc(eventId).update({
+            "participants": FieldValue.arrayUnion([useruid]),
+          });
+          _fireStore
+              .collection("users")
+              .doc(useruid)
+              .collection("events")
+              .doc(eventId)
+              .update({
+            "participants": FieldValue.arrayUnion([useruid]),
+          });
+          result = "Event successfully liked";
+        }
       }
     } catch (error) {
       result = error.toString();

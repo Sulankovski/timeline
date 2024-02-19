@@ -166,9 +166,10 @@ class _AddScreenState extends State<AddScreen> {
                           longitude: _startPos.longitude,
                         ),
                       );
-                      if(geoPoints!=null){
+                      if (geoPoints != null) {
                         setState(() {
-                          _local="${geoPoints.latitude} ${geoPoints.longitude}";
+                          _local =
+                              "${geoPoints.latitude} ${geoPoints.longitude}";
                           locationTExt = "Location chosen";
                         });
                         print(_local);

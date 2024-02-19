@@ -62,7 +62,6 @@ class _MapScreenState extends State<MapScreen> {
           Marker(
             markerId: MarkerId(point.toString()),
             position: point,
-            // You can customize other properties of the marker here
           ),
       },
     );

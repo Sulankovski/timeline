@@ -63,6 +63,13 @@ class _MobileScreenState extends State<MobileScreen> {
             ),
             backgroundColor: Colors.transparent,
           ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.transparent,
+          ),
         ],
         onTap: navigationBarTapped,
       ),

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:timeline/widgets/event.dart';
+import 'package:timeline/widgets/event_info.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -13,7 +15,10 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // ignore: prefer_final_fields
   Set<LatLng> _points = {};
+  // ignore: prefer_final_fields
+  Map<LatLng, Event> _pointsEvent = {};
 
   Future<void> fetchPoints() async {
     var snapshots = await _firestore
@@ -27,8 +32,18 @@ class _MapScreenState extends State<MapScreen> {
         double.parse(coordinates.split(" ")[0]),
         double.parse(coordinates.split(" ")[1]),
       );
+      Event event = Event(
+        type: doc["group"],
+        time: doc["time"],
+        eventName: doc["event"],
+        date: doc["date"],
+        host: doc["creator"],
+        participants: doc["participants"],
+        photo: doc["ppURL"],
+      );
       setState(() {
         _points.add(point);
+        _pointsEvent[point] = event;
       });
     }
   }
@@ -62,6 +77,13 @@ class _MapScreenState extends State<MapScreen> {
           Marker(
             markerId: MarkerId(point.toString()),
             position: point,
+            onTap: () => EventInfo().showEventInfoPopup(
+              context,
+              _pointsEvent[point]!,
+              _pointsEvent[point]!.host,
+              _pointsEvent[point]!.participants,
+              _pointsEvent[point]!.photo,
+            ),
           ),
       },
     );

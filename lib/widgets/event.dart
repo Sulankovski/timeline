@@ -5,6 +5,7 @@ class Event {
   final String type;
   final String host;
   final List participants;
+  final String photo;
 
   Event({
     required this.type,
@@ -13,5 +14,6 @@ class Event {
     required this.date,
     required this.host,
     required this.participants,
+    required this.photo,
   });
 }

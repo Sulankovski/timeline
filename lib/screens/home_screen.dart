@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
               date: doc["date"],
               host: doc["creator"],
               participants: doc["participants"],
+              photo: doc["ppURL"],
             ),
           );
         });
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               date: doc["date"],
               host: doc["creator"],
               participants: doc["participants"],
+              photo: doc["ppURL"],
             ),
           );
         });
@@ -140,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             _getEventsForDay(selectedDate)[index],
                             _getEventsForDay(selectedDate)[index].host,
                             _getEventsForDay(selectedDate)[index].participants,
+                            _getEventsForDay(selectedDate)[index].photo,
                           ),
                           child: Row(
                             children: [

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
@@ -7,6 +8,7 @@ import 'package:uuid/uuid.dart';
 class FirebaseMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   // Private constructor for Singleton design pattern
   FirebaseMethods._privateConstructor();
@@ -63,18 +65,28 @@ class FirebaseMethods {
     SystemNavigator.pop();
   }
 
+  Future<String> uploadImageToStorage(Uint8List file, String eventId) async {
+    Reference ref = _storage.ref().child("eventsProfilePics").child(eventId);
+    UploadTask uploadTask = ref.putData(file);
+    TaskSnapshot snap = await uploadTask;
+    String downloadURL = await snap.ref.getDownloadURL();
+    return downloadURL;
+  }
+
   Future<String> createNewEvent({
     required DateTime dateTime,
     required TimeOfDay timeOfDay,
     required String name,
     required String group,
     required String location,
+    required Uint8List file,
   }) async {
+    String eventID = const Uuid().v1();
     String result = "Error while making event";
     DocumentSnapshot user =
         await _fireStore.collection("users").doc(_auth.currentUser!.uid).get();
+    String photoURL = await uploadImageToStorage(file, eventID);
     try {
-      String eventID = const Uuid().v1();
       if (_auth.currentUser!.uid.isNotEmpty &&
           dateTime != DateTime(0) &&
           name.isNotEmpty &&
@@ -95,6 +107,7 @@ class FirebaseMethods {
           "location": location,
           "participants": [],
           "creator": user["username"],
+          "ppURL": photoURL,
         });
         if (group == "public") {
           _fireStore.collection("publicEvents").doc(eventID).set({
@@ -108,6 +121,7 @@ class FirebaseMethods {
             "location": location,
             "participants": [],
             "creator": user["username"],
+            "ppURL": photoURL,
           });
         }
         result = "Event successfully created";

@@ -156,9 +156,11 @@ class _EventScreenState extends State<EventScreen> {
                                 host: snapshot.data!.docs[index]["creator"],
                                 participants: snapshot.data!.docs[index]
                                     ["participants"],
+                                photo: snapshot.data!.docs[index]["ppURL"],
                               ),
                               snapshot.data!.docs[index]["creator"],
                               snapshot.data!.docs[index]["participants"],
+                              snapshot.data!.docs[index]["ppURL"],
                             ),
                             child: const Icon(
                               Icons.group,

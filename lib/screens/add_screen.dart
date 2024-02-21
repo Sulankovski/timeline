@@ -1,7 +1,10 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:timeline/resources/firebase_methods.dart';
+import 'package:timeline/utils/utils.dart';
 import 'package:timeline/widgets/input_box.dart';
 
 class AddScreen extends StatefulWidget {
@@ -30,6 +33,7 @@ class _AddScreenState extends State<AddScreen> {
   String locationTExt = "Choose location";
   String _selectedOption = "group";
   String _group = "";
+  Uint8List? _image;
 
   void picDate() {
     showDatePicker(
@@ -65,12 +69,20 @@ class _AddScreenState extends State<AddScreen> {
       name: _name.text,
       group: _group,
       location: _local,
+      file: _image!,
     );
     setState(() {
       widget.onSubmit();
     });
     // ignore: avoid_print
     print(rez);
+  }
+
+  void selectImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
   }
 
   static const LatLng _startPos = LatLng(
@@ -97,6 +109,21 @@ class _AddScreenState extends State<AddScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: GestureDetector(
+                  onTap: () => selectImage(),
+                  child: _image != null
+                      ? CircleAvatar(
+                          radius: 30,
+                          backgroundImage: MemoryImage(_image!),
+                        )
+                      : const CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage('assets/group.png'),
+                        ),
+                ),
+              ),
               InputBox(
                 controller: _name,
                 hitText: "Input name for event",
@@ -172,7 +199,6 @@ class _AddScreenState extends State<AddScreen> {
                               "${geoPoints.latitude} ${geoPoints.longitude}";
                           locationTExt = "Location chosen";
                         });
-                        print(_local);
                       }
                     },
                     child: Text(

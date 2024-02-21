@@ -9,8 +9,8 @@ class EventInfo {
     return snap["username"];
   }
 
-  void showEventInfoPopup(
-      BuildContext context, Event event, String host, List participants) {
+  void showEventInfoPopup(BuildContext context, Event event, String host,
+      List participants, String photo) {
     showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -25,12 +25,18 @@ class EventInfo {
             ),
           ),
           content: Center(
-            heightFactor: 2,
+            heightFactor: 1.5,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(photo),
+                    ),
+                  ),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(

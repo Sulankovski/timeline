@@ -16,6 +16,7 @@ Upon page creation, the values for each key (LatLng) are retrieved, and a marker
 
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300"><br />
+
 ## Calendar Screen
 The Calendar screen features a horizontally displayed calendar. Below the calendar, events scheduled for the selected day are showcased. These events are fetched from Firebase upon initialization of the screen and stored in a map with String keys and Dynamic values.
 

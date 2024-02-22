@@ -71,6 +71,9 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/13495e71-44ce-469b-918f-662a0753d46d" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/90f05c94-953a-4ff8-b2be-c6414a67c5c7" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/2348e043-d211-4595-9f33-2f3214dd1857" width="200" height="300">

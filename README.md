@@ -43,11 +43,11 @@ Upon every new sign-up, a new user is created with designated Firestore and Stor
 
 The app's codebase is organized into distinct files to ensure clarity and maintainability:
 
-Screens: Each screen, such as login and sign-up, has its own file to manage UI components effectively. <br />
-Resources: Firebase-related methods, including user authentication and event management, are centralized in firebase_methods.dart.<br />
-Widgets: Reusable UI components are stored in the widgets directory to reduce redundancy and streamline development.<br />
-Utils: Utility methods, like image selection, are housed in utils for convenient access and code cleanliness.<br />
-Global Variables: Essential variables, such as navigation configurations and color palettes, are defined in global_variables.dart.<br />
-Main: The main.dart file serves as the app's entry point, managing initialization and user session persistence.<br />
+Markup : * Screens: Each screen, such as login and sign-up, has its own file to manage UI components effectively. <br />
+* Resources: Firebase-related methods, including user authentication and event management, are centralized in firebase_methods.dart.<br />
+* Widgets: Reusable UI components are stored in the widgets directory to reduce redundancy and streamline development.<br />
+* Utils: Utility methods, like image selection, are housed in utils for convenient access and code cleanliness.<br />
+* Global Variables: Essential variables, such as navigation configurations and color palettes, are defined in global_variables.dart.<br />
+* Main: The main.dart file serves as the app's entry point, managing initialization and user session persistence.<br />
 
 

@@ -1,7 +1,7 @@
 # timeline
 
 ## Description
-Dynamic social platform crafted using Dart within the Flutter framework. It utilizes Firebase Firestore and Storage to efficiently store and manage data, while FirebaseAuth ensures secure and reliable user authentication.
+Our social platform empowers users to create diverse events, offering the ability to specify event visibility for individual groups. Users can effortlessly organize events based on date, time, location, and group preferences. Events are displayed both on a map and a calendar interface, providing intuitive navigation. Additionally, all public events are universally accessible to every user.
 
 ## Features
 The application seamlessly integrates Firebase sign-up/log-in functionality for user authentication, alongside robust features such as a map screen, a calendar screen showcasing events organized by days, a public events screen, and a profile screen presenting user information. Additionally, the app offers live and real-time updates of data, ensuring that users have access to live data.

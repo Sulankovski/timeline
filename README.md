@@ -34,4 +34,9 @@ Furthermore, the screen features a group icon. Upon clicking it, detailed inform
 The Profile Screen displays the username of the user along with the number of public, private, and group events associated with their account. Additionally, there is a sign-out button that allows users to end their session, logging them out and redirecting them to the login screen. This feature ensures a seamless transition for users between sessions while maintaining security and privacy.
 
 ## Log In / Sign Up Screen
-  ### Log In
+Login Screen that utilizes Firebase Authentication to enable users to log in using the Gmail address and password associated with their account. This secure login process ensures that users can access their accounts with ease, utilizing the credentials they initially created their account with.
+
+The Sign-Up Screen enables users to create a new account using FirebaseAuth methods, where they input their username, email, and password. Upon successful account creation, users are seamlessly redirected to the main page, ready to explore the app's features.
+Upon every new sign-up, a new user is created with designated Firestore and Storage resources. This ensures that each user has their own dedicated storage and database space, allowing for personalized data management and efficient access to resources within the app.
+
+

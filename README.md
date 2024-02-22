@@ -1,4 +1,4 @@
-# timeline
+# Timeline
 
 ## Description
 Our social platform empowers users to create diverse events, offering the ability to specify event visibility for individual groups. Users can effortlessly organize events based on date, time, location, and group preferences. Events are displayed both on a map and a calendar interface, providing intuitive navigation. Additionally, all public events are universally accessible to every user.

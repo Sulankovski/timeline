@@ -13,6 +13,10 @@ The events are fetched from Firebase upon initialization of the page and are sto
 
 Upon page creation, the values for each key (LatLng) are retrieved, and a marker is created for each data row, representing an event on the map. This approach allows users to easily visualize and interact with their events directly on the map interface.
 
+
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300"><br />
+
 ## Calendar Screen
 The Calendar screen features a horizontally displayed calendar. Below the calendar, events scheduled for the selected day are showcased. These events are fetched from Firebase upon initialization of the screen and stored in a map with String keys and Dynamic values.
 
@@ -22,6 +26,13 @@ The home screen also offers the functionality to add a new event by clicking the
 
 Upon submission, the event is immediately displayed thanks to live updates fetched from Firebase. This ensures that users can see their newly added events in real-time without any delay.
 
+
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/90f05c94-953a-4ff8-b2be-c6414a67c5c7" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300"><br />
+
 ## Public Events Screen
 The Public Events screen displays all the public events created by users. It utilizes a StreamBuilder for fetching events, enabling real-time updates. This means that if a different user adds a public event, it will immediately appear on our screen, even if we are already using the app.
 
@@ -29,15 +40,23 @@ The events are presented using a ListView builder, where each row showcases the 
 
 Furthermore, the screen features a group icon. Upon clicking it, detailed information for every event is displayed, allowing users to gain more insight into each event.
 
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/2348e043-d211-4595-9f33-2f3214dd1857" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/a38fadeb-fac2-413d-aab8-7025f6140b01" width="200" height="300"><br />
+
 ## Profile Screen
 
 The Profile Screen displays the username of the user along with the number of public, private, and group events associated with their account. Additionally, there is a sign-out button that allows users to end their session, logging them out and redirecting them to the login screen. This feature ensures a seamless transition for users between sessions while maintaining security and privacy.
+
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300"><br />
 
 ## Log In / Sign Up Screen
 Login Screen that utilizes Firebase Authentication to enable users to log in using the Gmail address and password associated with their account. This secure login process ensures that users can access their accounts with ease, utilizing the credentials they initially created their account with.
 
 The Sign-Up Screen enables users to create a new account using FirebaseAuth methods, where they input their username, email, and password. Upon successful account creation, users are seamlessly redirected to the main page, ready to explore the app's features.
 Upon every new sign-up, a new user is created with designated Firestore and Storage resources. This ensures that each user has their own dedicated storage and database space, allowing for personalized data management and efficient access to resources within the app.
+
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/fc47e566-f7ef-471d-87cd-5b8260356d2d" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/13495e71-44ce-469b-918f-662a0753d46d" width="200" height="300"><br />
 
 ## App structure and code
 
@@ -65,20 +84,6 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
    1. flutter_timeline_calendar: ^1.0.9
 4. Picker for image
    1. image_picker: ^1.0.7
-
-## Pictures
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/fc47e566-f7ef-471d-87cd-5b8260356d2d" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/13495e71-44ce-469b-918f-662a0753d46d" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/90f05c94-953a-4ff8-b2be-c6414a67c5c7" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/2348e043-d211-4595-9f33-2f3214dd1857" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/a38fadeb-fac2-413d-aab8-7025f6140b01" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300">
 
 
 

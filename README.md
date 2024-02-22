@@ -67,6 +67,6 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
    1. image_picker: ^1.0.7
 
 ## Pics
-![image](https://github.com/Sulankovski/timeline/assets/98781556/fc47e566-f7ef-471d-87cd-5b8260356d2d)
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/fc47e566-f7ef-471d-87cd-5b8260356d2d" width="300" height="200">
 
 

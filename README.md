@@ -13,6 +13,9 @@ The events are fetched from Firebase upon initialization of the page and are sto
 
 Upon page creation, the values for each key (LatLng) are retrieved, and a marker is created for each data row, representing an event on the map. This approach allows users to easily visualize and interact with their events directly on the map interface.
 
+
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300">
 ## Calendar Screen
 The Calendar screen features a horizontally displayed calendar. Below the calendar, events scheduled for the selected day are showcased. These events are fetched from Firebase upon initialization of the screen and stored in a map with String keys and Dynamic values.
 
@@ -74,8 +77,6 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/940200ee-8e73-4e8a-bc24-0477dc8ffc7e" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/2348e043-d211-4595-9f33-2f3214dd1857" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/a38fadeb-fac2-413d-aab8-7025f6140b01" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300">

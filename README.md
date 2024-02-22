@@ -50,4 +50,19 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
 * Global Variables: Essential variables, such as navigation configurations and color palettes, are defined in global_variables.dart.<br />
 * Main: The main.dart file serves as the app's entry point, managing initialization and user session persistence.<br />
 
+## Used dependencies
+1. Firebase
+  1. cloud_firestore: ^4.15.4
+  2. cupertino_icons: ^1.0.2
+  3. firebase_auth: ^4.17.4
+  4. firebase_core: ^2.25.4
+  5. firebase_storage: ^11.6.5
+  6. uuid: ^4.3.3
+2. Map implementation
+  1. flutter_osm_plugin: ^0.70.4
+  2. google_maps_flutter: ^2.5.3
+3. Calendar 
+  1. flutter_timeline_calendar: ^1.0.9
+4. Picker for image
+  1. image_picker: ^1.0.7
 

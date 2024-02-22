@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline/global_variables.dart';
+import 'package:timeline/resources/command.dart';
 import 'package:timeline/resources/firebase_methods.dart';
 import 'package:timeline/widgets/event.dart';
 import 'package:timeline/widgets/event_info.dart';
@@ -128,10 +129,8 @@ class _EventScreenState extends State<EventScreen> {
                               child: Center(
                                 child: GestureDetector(
                                   onTap: () async {
-                                    await _firebaseMethods.likeEvent(
-                                      eventId: snapshot.data!.docs[index]["id"],
-                                      useruid: _auth.currentUser!.uid,
-                                    );
+                                    LikeEventCommand command = LikeEventCommand();
+                                    command.execute(snapshot.data!.docs[index]["id"]);
                                   },
                                   child: FutureBuilder<bool>(
                                     future: hasLiked(

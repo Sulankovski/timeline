@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 
 class FirebaseMethods {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
@@ -28,7 +28,7 @@ class FirebaseMethods {
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
         //user sign up
-        UserCredential user = await _auth.createUserWithEmailAndPassword(
+        UserCredential user = await auth.createUserWithEmailAndPassword(
             email: email, password: password);
         //saving user details
         _fireStore.collection("users").doc(user.user!.uid).set({
@@ -50,7 +50,7 @@ class FirebaseMethods {
     String result = "Something went wrong";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
-        await _auth.signInWithEmailAndPassword(
+        await auth.signInWithEmailAndPassword(
             email: email, password: password);
         result = "User successfuly logged in";
       }
@@ -61,7 +61,7 @@ class FirebaseMethods {
   }
 
   Future<void> signOutUser() async {
-    await _auth.signOut();
+    await auth.signOut();
     SystemNavigator.pop();
   }
 
@@ -84,16 +84,16 @@ class FirebaseMethods {
     String eventID = const Uuid().v1();
     String result = "Error while making event";
     DocumentSnapshot user =
-        await _fireStore.collection("users").doc(_auth.currentUser!.uid).get();
+        await _fireStore.collection("users").doc(auth.currentUser!.uid).get();
     String photoURL = await uploadImageToStorage(file, eventID);
     try {
-      if (_auth.currentUser!.uid.isNotEmpty &&
+      if (auth.currentUser!.uid.isNotEmpty &&
           dateTime != DateTime(0) &&
           name.isNotEmpty &&
           group.isNotEmpty) {
         _fireStore
             .collection("users")
-            .doc(_auth.currentUser!.uid)
+            .doc(auth.currentUser!.uid)
             .collection("events")
             .doc(eventID)
             .set({

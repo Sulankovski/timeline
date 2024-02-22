@@ -43,6 +43,8 @@ Furthermore, the screen features a group icon. Upon clicking it, detailed inform
 
 The Profile Screen displays the username of the user along with the number of public, private, and group events associated with their account. Additionally, there is a sign-out button that allows users to end their session, logging them out and redirecting them to the login screen. This feature ensures a seamless transition for users between sessions while maintaining security and privacy.
 
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300"><br />
+
 ## Log In / Sign Up Screen
 Login Screen that utilizes Firebase Authentication to enable users to log in using the Gmail address and password associated with their account. This secure login process ensures that users can access their accounts with ease, utilizing the credentials they initially created their account with.
 
@@ -84,7 +86,6 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300">
 
 
 

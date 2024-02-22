@@ -59,10 +59,10 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
     5. firebase_storage: ^11.6.5
     6. uuid: ^4.3.3
 2. Map implementation
-  1. flutter_osm_plugin: ^0.70.4
-  2. google_maps_flutter: ^2.5.3
+   1. flutter_osm_plugin: ^0.70.4
+   2. google_maps_flutter: ^2.5.3
 3. Calendar 
-  1. flutter_timeline_calendar: ^1.0.9
+   1. flutter_timeline_calendar: ^1.0.9
 4. Picker for image
-  1. image_picker: ^1.0.7
+   1. image_picker: ^1.0.7
 

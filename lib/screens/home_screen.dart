@@ -226,6 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       onSubmit: () {
                         setState(() {
                           add = false;
+                          _events = {};
+                          fetchEvents();
                         });
                       },
                     ),

@@ -34,6 +34,7 @@ class _AddScreenState extends State<AddScreen> {
   String _selectedOption = "group";
   String _group = "";
   Uint8List? _image;
+  bool isLoading = false;
 
   void picDate() {
     showDatePicker(
@@ -288,7 +289,10 @@ class _AddScreenState extends State<AddScreen> {
                     border: Border.all(color: Colors.white),
                   ),
                   child: TextButton(
-                    onPressed: () => makeEvent(),
+                    onPressed: () {
+                      makeEvent();
+                      isLoading = true;
+                    },
                     child: const Text(
                       "Submit",
                       style: TextStyle(

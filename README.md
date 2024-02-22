@@ -69,4 +69,10 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
 ## Pics
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/fc47e566-f7ef-471d-87cd-5b8260356d2d" width="200" height="300">
 <img src="https://github.com/Sulankovski/timeline/assets/98781556/13495e71-44ce-469b-918f-662a0753d46d" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/4a7cfebc-88a9-41c6-9d35-82af8397a92c" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/4e84b08f-bd17-4de8-847a-4c4e8d33f0a5" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/21d5da09-0952-432b-8abe-716f81f7529f" width="200" height="300">
+
+
 

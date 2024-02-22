@@ -27,7 +27,11 @@ The home screen also offers the functionality to add a new event by clicking the
 Upon submission, the event is immediately displayed thanks to live updates fetched from Firebase. This ensures that users can see their newly added events in real-time without any delay.
 
 
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300"><br />
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/558a6f3f-abf6-4a91-ab3d-bbed567cb75c" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/90f05c94-953a-4ff8-b2be-c6414a67c5c7" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
+<img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300"><br />
 
 ## Public Events Screen
 The Public Events screen displays all the public events created by users. It utilizes a StreamBuilder for fetching events, enabling real-time updates. This means that if a different user adds a public event, it will immediately appear on our screen, even if we are already using the app.
@@ -80,12 +84,6 @@ The app's codebase is organized into distinct files to ensure clarity and mainta
    1. flutter_timeline_calendar: ^1.0.9
 4. Picker for image
    1. image_picker: ^1.0.7
-
-## Pictures
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/90f05c94-953a-4ff8-b2be-c6414a67c5c7" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/5f6e2ba9-eb3f-4380-bea6-4627b8e66bdb" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/8f7daa8a-cae7-46fc-827b-3b76f68610df" width="200" height="300">
-<img src="https://github.com/Sulankovski/timeline/assets/98781556/419f440f-2891-402d-9bd4-6ba1e68f839c" width="200" height="300">
 
 
 

@@ -39,4 +39,15 @@ Login Screen that utilizes Firebase Authentication to enable users to log in usi
 The Sign-Up Screen enables users to create a new account using FirebaseAuth methods, where they input their username, email, and password. Upon successful account creation, users are seamlessly redirected to the main page, ready to explore the app's features.
 Upon every new sign-up, a new user is created with designated Firestore and Storage resources. This ensures that each user has their own dedicated storage and database space, allowing for personalized data management and efficient access to resources within the app.
 
+## App structure and code
+
+The app's codebase is organized into distinct files to ensure clarity and maintainability:
+
+Screens: Each screen, such as login and sign-up, has its own file to manage UI components effectively.
+Resources: Firebase-related methods, including user authentication and event management, are centralized in firebase_methods.dart.
+Widgets: Reusable UI components are stored in the widgets directory to reduce redundancy and streamline development.
+Utils: Utility methods, like image selection, are housed in utils for convenient access and code cleanliness.
+Global Variables: Essential variables, such as navigation configurations and color palettes, are defined in global_variables.dart.
+Main: The main.dart file serves as the app's entry point, managing initialization and user session persistence.
+
 

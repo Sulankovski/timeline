@@ -16,9 +16,9 @@ Upon page creation, the values for each key (LatLng) are retrieved, and a marker
 ## Calendar Screen
 The Calendar screen features a horizontally displayed calendar. Below the calendar, events scheduled for the selected day are showcased. These events are fetched from Firebase upon initialization of the screen and stored in a map with String keys and Dynamic values.
 
-For every new day that is selected, the events are retrieved from the map and displayed using a ListView builder. Each row within the ListView displays the event's name and date, followed by the time and type of event. Upon clicking an event, the user is prompted with detailed information including the event's name, creator, and participants.
+For every new day that is selected, the events are retrieved from the map and displayed using a ListView builder. Each row within the ListView displays the event's name and date, followed by the time and type of event. Upon clicking an event, users are prompted with detailed information including the event's name, creator, and participants.
 
-The home screen also offers the functionality to add a new event by clicking the plus icon located at the bottom right corner. Users can input the name of the event, select the date and time, choose a location from a location prompt, and specify the type of event (public, private, group).
+The home screen also offers the functionality to add a new event by clicking the plus icon located at the bottom right corner. Users begin by choosing a picture for the event they want to create. Then, they input the name of the event, select the date and time, choose a location from a location prompt, and specify the type of event (public, private, group).
 
 Upon submission, the event is immediately displayed thanks to live updates fetched from Firebase. This ensures that users can see their newly added events in real-time without any delay.
 

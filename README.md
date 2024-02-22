@@ -23,4 +23,10 @@ The home screen also offers the functionality to add a new event by clicking the
 Upon submission, the event is immediately displayed thanks to live updates fetched from Firebase. This ensures that users can see their newly added events in real-time without any delay.
 
 ## Public Events Screen
+The Public Events screen displays all the public events created by users. It utilizes a StreamBuilder for fetching events, enabling real-time updates. This means that if a different user adds a public event, it will immediately appear on our screen, even if we are already using the app.
+
+The events are presented using a ListView builder, where each row showcases the event's name, date, and time. Moreover, users can express their interest in participating by liking events, and this interaction is instantly reflected for all users in real-time. This functionality is facilitated by a function that retrieves the likes for each event whenever the like icon is clicked.
+
+Furthermore, the screen features a group icon. Upon clicking it, detailed information for every event is displayed, allowing users to gain more insight into each event.
+
 ## Profile Screen
